@@ -186,6 +186,25 @@ class BinarySearchTree {
 
         return visited
     }
+
+    // Pre Order Travesal: A. With Recursion (Easy), B. Iterative- Using Stack
+    preOrderTraversal() {
+        if (!this.root) return undefined
+
+        let visited = []
+        let current = this.root
+
+        function helper(node) {
+            visited.push(node.value)
+
+            if (node.left) helper(node.left)
+            if (node.right) helper(node.right)
+        }
+
+        helper(current)
+
+        return visited
+    }
 }
 
 let t = new BinarySearchTree()
