@@ -205,6 +205,34 @@ class BinarySearchTree {
 
         return visited
     }
+
+    preOrderTraversalWithoutRecursion() {
+        if (!this.root) return undefined
+
+        let stack = new Stack()
+        let visited = []
+
+        if (!this.root) return undefined
+
+        stack.push(this.root)
+        let poppedNode
+
+        while(stack.size !== 0) {
+            poppedNode = stack.pop()
+            visited.push(poppedNode.value.value)
+
+            // make sure to put right child first
+            if (poppedNode.value.right) {
+                stack.push(poppedNode.value.right)
+            }
+
+            if (poppedNode.value.left) {
+                stack.push(poppedNode.value.left)
+            }
+        }
+
+        return visited
+    }
 }
 
 let t = new BinarySearchTree()
@@ -217,3 +245,5 @@ t.insert(8)
 t.insert(20)
 
 console.log(t.breadthFirstSearch())
+console.log(t.preOrderTraversal())
+console.log(t.preOrderTraversalWithoutRecursion())
