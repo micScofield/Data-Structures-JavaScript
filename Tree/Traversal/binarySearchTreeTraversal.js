@@ -250,6 +250,23 @@ class BinarySearchTree {
 
         return visited
     }
+
+    inOrderTraversal() {
+        if (!this.root) return undefined
+
+        let visited = []
+        let current = this.root
+
+        function helper(node) {
+            if (node.left) helper(node.left)
+            visited.push(node.value)
+            if (node.right) helper(node.right)
+        }
+
+        helper(current)
+
+        return visited
+    }
 }
 
 let t = new BinarySearchTree()
@@ -265,3 +282,4 @@ console.log(t.breadthFirstSearch())
 console.log(t.preOrderTraversal())
 console.log(t.preOrderTraversalWithoutRecursion())
 console.log(t.postOrderTraversal())
+console.log(t.inOrderTraversal())
