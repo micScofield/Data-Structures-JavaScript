@@ -29,6 +29,22 @@ class HashTable {
 
         return index
     }
+
+    get(key) {
+        let index = this._hash(key)
+        if (!this.keyMap[index]) return undefined
+        if (this.keyMap[index].length === 1) return this.keyMap[index][0][1]
+
+        for (let i = 0; i < this.keyMap[index].length; i++) {
+            if (this.keyMap[index][i][0] === key) return this.keyMap[index][i][1]
+        }
+
+        return undefined
+    }
+
+    getTable() {
+        return this.keyMap
+    }
 }
 
 let ht = new HashTable(17)
@@ -40,3 +56,8 @@ console.log(ht.set("lightcoral","#F08080"))
 console.log(ht.set("mediumvioletred","#C71585"))
 console.log(ht.set("plum","#DDA0DD"))
 console.log(ht.set("plum","#DDA0DD"))
+
+console.log(ht.get("yellow"))
+console.log(ht.get("maroon"))
+
+console.log(ht.getTable())
