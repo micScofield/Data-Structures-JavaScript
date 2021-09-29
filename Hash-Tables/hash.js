@@ -45,6 +45,37 @@ class HashTable {
     getTable() {
         return this.keyMap
     }
+
+    keys() {
+        let keys = []
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (let j = 0; j < this.keyMap[i].length; j++) {
+                    keys.push(this.keyMap[i][j][0])
+                }
+            }
+        }
+        return keys
+    }
+
+    values() {
+        let values = []
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (let j = 0; j < this.keyMap[i].length; j++) {
+                    values.push(this.keyMap[i][j][1])
+                }
+            }
+        }
+        return values
+
+        // Approach 2:
+        // let values = []
+        // ht.keys().forEach(function(key){
+        //     values.push(ht.get(key))
+        // })
+        // return values
+    }
 }
 
 let ht = new HashTable(17)
@@ -61,3 +92,6 @@ console.log(ht.get("yellow"))
 console.log(ht.get("maroon"))
 
 console.log(ht.getTable())
+
+console.log(ht.keys())
+console.log(ht.values())
