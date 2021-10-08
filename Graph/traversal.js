@@ -40,13 +40,6 @@ class Stack {
 
 let stack = new Stack();
 
-class QueueNode {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
 class Queue {
   constructor() {
     this.first = null;
@@ -64,4 +57,18 @@ class Queue {
     }
     return ++this.size;
   }
+
+  dequeue() {
+    if (!this.first) return null;
+
+    var temp = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = this.first.next;
+    this.size--;
+    return temp.value;
+  }
 }
+
+let queue = new Queue();
