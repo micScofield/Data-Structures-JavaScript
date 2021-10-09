@@ -172,3 +172,5 @@ Graph {
   }
 }
 */
+
+console.log(graph.dfsRecursive("A")); // ['A', 'B', 'D', 'E', 'C', 'F' ]
