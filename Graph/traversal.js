@@ -117,6 +117,29 @@ class Graph {
     delete this.adjacencyList[vertex];
     return this.adjacencyList;
   }
+
+  dfsRecursive(vertex) {
+    let result = [];
+    let visited = {};
+    const adjacencyList = this.adjacencyList; // so that function doesn't lose adjacency list inside function. We couls use an arrow function though and still use this.adjacencyList.
+
+    (function helper(vertex) {
+      if (!vertex) return null;
+
+      visited[vertex] = true;
+      result.push(vertex);
+      console.log("Pushed ", vertex);
+
+      adjacencyList[vertex].forEach((neighbour) => {
+        console.log("looping vertex: ", vertex);
+        // see callstack for picturing recursive calls and add a breakpoint at below line of code
+
+        if (!visited[neighbour]) return helper(neighbour);
+      });
+    })(vertex);
+
+    return result;
+  }
 }
 
 let graph = new Graph();
