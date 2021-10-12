@@ -140,6 +140,38 @@ class Graph {
 
     return result;
   }
+
+  dfsIterative(vertex) {
+    let result = [];
+    let visited = {};
+
+    stack.push(vertex);
+    visited[vertex] = true;
+
+    while (stack.size > 0) {
+      let v = stack.pop();
+
+      result.push(v);
+
+      this.adjacencyList[v].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          stack.push(neighbour);
+        }
+      });
+
+      // Approach 2
+      // for (let i = this.adjacencyList[v].length-1; i >= 0; i--) {
+      //   if (!visited[this.adjacencyList[v][i]]) {
+      //     visited[this.adjacencyList[v][i]] = true;
+      //     stack.push(this.adjacencyList[v][i])
+      //   }
+      //   stack.push(this.adjacencyList[v][i])
+      // }
+    }
+
+    return result;
+  }
 }
 
 let graph = new Graph();
