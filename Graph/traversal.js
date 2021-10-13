@@ -40,6 +40,13 @@ class Stack {
 
 let stack = new Stack();
 
+class QueueNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
 class Queue {
   constructor() {
     this.first = null;
@@ -172,6 +179,29 @@ class Graph {
 
     return result;
   }
+
+  bfs(vertex) {
+    let result = [];
+    let visited = {};
+
+    queue.enqueue(vertex);
+    visited[vertex] = true;
+
+    while (queue.size > 0) {
+      let v = queue.dequeue();
+
+      result.push(v);
+
+      this.adjacencyList[v].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          queue.enqueue(neighbour);
+        }
+      });
+    }
+
+    return result;
+  }
 }
 
 let graph = new Graph();
@@ -207,3 +237,4 @@ Graph {
 
 console.log(graph.dfsRecursive("A")); // ['A', 'B', 'D', 'E', 'C', 'F' ]
 console.log(graph.dfsIterative("A")); // ['A', 'C', 'E', 'F', 'D', 'B' ] // to get same order we need to push neighbours inside stack in reverse alphabetic manner BUT prequisite is that the edges are arranged in a sorted manner which is not the case in a normal world
+console.log(graph.bfs("A")); // [ 'A', 'B', 'C', 'D', 'E', 'F' ]
