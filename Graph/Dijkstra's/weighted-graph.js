@@ -100,3 +100,9 @@ class PriorityQueue {
     return { extractedMax, heap: this.values };
   }
 }
+
+class WeightedGraph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+}
