@@ -105,4 +105,44 @@ class WeightedGraph {
   constructor() {
     this.adjacencyList = {};
   }
+
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    return this.adjacencyList;
+  }
+
+  addEdge(v1, v2, weight) {
+    // check edge case
+    if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return undefined;
+
+    this.adjacencyList[v1].push({ node: v2, weight });
+    this.adjacencyList[v2].push({ node: v1, weight });
+    return this.adjacencyList;
+  }
+
+  removeEdge(vertex1, vertex2) {
+    // check edge case
+    if (!this.adjacencyList[vertex1] || !this.adjacencyList[vertex2])
+      return undefined;
+
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      (v) => v !== vertex2
+    );
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+      (v) => v !== vertex1
+    );
+    return this.adjacencyList;
+  }
+
+  removeVertex(vertex) {
+    if (!this.adjacencyList[vertex]) return undefined;
+
+    while (this.adjacencyList[vertex].length) {
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+
+    delete this.adjacencyList[vertex];
+    return this.adjacencyList;
+  }
 }
