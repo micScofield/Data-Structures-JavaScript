@@ -145,6 +145,36 @@ class WeightedGraph {
     delete this.adjacencyList[vertex];
     return this.adjacencyList;
   }
+
+  findShortestPath(start, finish) {
+    if (!this.adjacencyList[start] || !this.adjacencyList[finish])
+      return undefined;
+
+    // Step 1. Setup a distances object, a priority queue and a previous object
+    let distances = {};
+    let pq = new PriorityQueue();
+    let previous = {};
+
+    for (let i in this.adjacencyList) {
+      if (i === start) {
+        distances[start] = 0;
+        pq.enqueue(i, 0);
+      } else {
+        distances[i] = Infinity;
+        pq.enqueue(i, Infinity);
+      }
+
+      previous[i] = null;
+    }
+
+    console.log("queue: ", pq);
+    console.log("distances: ", distances);
+    console.log("previous", previous);
+
+    // Step 2
+    let path = []; // to return at the end
+    let smallest;
+  }
 }
 
 let g = new WeightedGraph();
