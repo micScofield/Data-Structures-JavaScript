@@ -174,6 +174,50 @@ class WeightedGraph {
     // Step 2
     let path = []; // to return at the end
     let smallest;
+
+    while (pq.values.length > 0) {
+      console.log(previous);
+      smallest = pq.dequeue().extractedMax.value; // pq.dequeue gives us { extractedMax, heap: this.values } where extractedMax: { value: <Vertex>, priority: <Number> }
+
+      if (smallest === finish) {
+        // push nodes to path
+        while (previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+        break;
+      }
+
+      if (smallest || distances[smallest] !== Infinity) {
+        for (let neighbour in this.adjacencyList[smallest]) {
+          // find neighbouring node
+          let neighbourNode = this.adjacencyList[smallest][neighbour]; // eg: { node: "A", weight: 5 }
+
+          // calculate new distance to neighbouring node from start node. If this distance is lesser, we update the distances object with updated value and previous and pq as well.
+          let candidate = distances[smallest] + neighbourNode.weight;
+
+          if (candidate < distances[neighbourNode.node]) {
+            //updating new smallest distance to neighbour
+            distances[neighbourNode.node] = candidate;
+
+            //updating previous - How we got to neighbour
+            previous[neighbourNode.node] = smallest;
+
+            //enqueue in priority queue with new priority
+            pq.enqueue(neighbourNode.node, candidate);
+          }
+        }
+      }
+    }
+    console.log("Out of the loop, current smallest: ", smallest); // When we create path, we go backwards and set smallest to start node i.e. "A"
+    console.log("queue: ", pq);
+    console.log("distances: ", distances);
+    console.log("previous", previous);
+
+    return {
+      path: path.concat(smallest).reverse(),
+      totalDistance: distances[finish],
+    };
   }
 }
 
@@ -193,3 +237,5 @@ g.addEdge("D", "E", 3);
 g.addEdge("D", "F", 1);
 g.addEdge("E", "F", 1);
 console.log(g);
+
+console.log(g.findShortestPath("A", "E")); // { path: [ 'A', 'C', 'D', 'F', 'E' ], totalDistance: 6 }
