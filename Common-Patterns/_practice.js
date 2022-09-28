@@ -8,7 +8,7 @@ function averagePair(arr, n) {
     while(left <= right) {
         avg = (arr[left] + arr[right]) / 2
 
-        if (avg === n) return true 
+        if (avg === n) return true
 
         avg > n ? right-- : left++
     }
