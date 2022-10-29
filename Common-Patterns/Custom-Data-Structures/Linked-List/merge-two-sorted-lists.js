@@ -10,6 +10,8 @@ list2.insertLast(1);
 list2.insertLast(3);
 list2.insertLast(4);
 
+// [1,1,2,3,4,4]
+
 console.log(merge(list1, list2)); // return head of merged list
 
 function merge(list1, list2) {

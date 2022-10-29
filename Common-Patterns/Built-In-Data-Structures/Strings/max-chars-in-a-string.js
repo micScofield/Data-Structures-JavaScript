@@ -1,6 +1,19 @@
 let a = 'abcccd'
 let b = 'ab11111d'
 
+// Easy to Read
+function mostOccuredChar(s) {
+    let map = new Map()
+
+    for (let i of s) {
+        map.set(i, (map.get(i) + 1) || 1)
+    }
+
+    return [...map.entries()].sort((a, b) => b[1] - a[1])[0][0]
+}
+
+// Other Approaches
+
 console.log(((str) => {
     let obj = {}
     for (let char of str) {
@@ -36,4 +49,4 @@ console.log(((str) => {
 
     // return map.keys().next().value // if you don't wanna use forEach & entries method
 
-})(b))
+})(a))

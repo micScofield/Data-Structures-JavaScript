@@ -1,15 +1,30 @@
 const { bst, n } = require('./*bst-2');
 
-// bst is valid, n is invalid
+function validate(node) {
+  let temp = node;
 
-(node => {
-    console.log(node)
-    let temp = node
-    let flag = true
-
-    while (temp) {
-        if (temp.left?.value > temp.value || temp.right?.value < temp.value) return false
-        temp = temp.left ? temp.left : temp.right
+  function helper(root, min = null, max = null) {
+    if (max !== null && root.data > max) {
+      return false;
     }
-    console.log(flag)
-})(n)
+
+    if (min !== null && root.data < min) {
+      return false;
+    }
+
+    if (root.left && !helper(root.left, min, root.data)) {
+      return false;
+    }
+
+    if (root.right && !helper(root.right, root.right.data, max)) {
+      return false;
+    }
+
+    return true
+  }
+
+  return helper(temp);
+}
+
+console.log(validate(n)); // false
+console.log(validate(bst)); // true

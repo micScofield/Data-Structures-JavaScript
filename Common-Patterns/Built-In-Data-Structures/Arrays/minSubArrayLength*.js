@@ -22,7 +22,6 @@ function minSubArrayLength(arr, sum) {
         }
 
         if (total === sum) {
-            console.log(arr.slice(start, end))
             minLength = Math.min(minLength, end-start)
             total = 0
             start = start + 1
@@ -76,3 +75,59 @@ console.log(minSubArrayLength2([1,2,3,2,4,3], 7)) // 2
 console.log(minSubArrayLength2([1,2,1,2,3,4,3], 5)) // 2
 console.log(minSubArrayLength2([1,4,16,22,5,7,8,9,10], 55)) // 5
 console.log(minSubArrayLength2([1,4,16,22,5,7,8,9,10], 95)) // 0
+
+// My initial implementation of first question: 
+
+/*
+// console.log(minSubArrayLength2([1,2,3,2,4,3], 7)) // 2
+// console.log(minSubArrayLength2([1,2,1,2,3,4,3], 5)) // 2
+// console.log(minSubArrayLength2([1,4,16,22,5,7,8,9,10], 55)) // 6
+console.log(minSubArrayLength2([1, 4, 16, 22, 5, 7, 8, 9, 10], 95)); // 0
+
+function minSubArrayLength2(arr, n) {
+  let count = 0;
+  let res = [];
+  let temp;
+  let result = Infinity;
+
+  function sum(arr) {
+    return arr.reduce((a, c) => a + c, 0);
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    temp = res[count];
+    console.log({ res, i, temp });
+    if (temp !== undefined) {
+      if (sum(temp) + arr[i] === n) {
+        res[count].push(arr[i]);
+        count++;
+        console.log(res);
+      } else if (sum(temp) + arr[i] < n) {
+        res[count].push(arr[i]);
+      } else {
+        if (sum(temp) - temp[0] + arr[i] === n) {
+          let temp2 = res[count].slice(1);
+          res[count] = [...temp2, arr[i]];
+          let temp3 = res[count].slice(1);
+          count++;
+          res[count] = [...temp3];
+        } else {
+          delete res[count];
+          res[count] = [arr[i]];
+        }
+      }
+    } else {
+      res[count] = [arr[i]];
+    }
+  }
+
+  for (let i = 0; i < res.length; i++) {
+    if (sum(res[i]) === n) {
+      length = res[i].length;
+      result = Math.min(result, length);
+    }
+  }
+  return result === Infinity ? 0 : result;
+}
+
+*/

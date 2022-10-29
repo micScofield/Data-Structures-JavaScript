@@ -3,21 +3,26 @@ const { LinkedList, Node } = require('./linked-list');
 const list1 = new LinkedList();
 list1.insertLast(1);
 list1.insertLast(2);
+list1.insertLast(2);
 list1.insertLast(3);
-list1.insertLast(3);
-list1.insertLast(4);
 
-console.log(removeDuplicates(list1.head)); // return list [1,2,3,4]
+console.log(removeDuplicates2(list1.head)); // return list [1,2,3]
 
-function removeDuplicates(head) {
-    let temp = head
+function removeDuplicates2(head) {
+    let current = head
+    let prev
 
-    while (temp && temp.next !== null) {
-        if (temp.val === temp.next.val) {
-            temp.next = temp.next.next
+    while (current) {
+      if (current.data === current.next?.data) {
+        if (prev) {
+          prev.next = current.next
         } else {
-            temp = temp.next
+          head = current.next
         }
+      } else {
+        prev = current
+      }
+      current = current.next
     }
     return head
-}
+  }

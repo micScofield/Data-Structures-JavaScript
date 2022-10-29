@@ -268,3 +268,15 @@ map2.set('2', "baz");
 console.log(map2)
 console.log(new Map([...map2.entries()].sort()))
 console.log(new Map([...map.entries()].sort()))
+
+var containsDuplicate = function(nums) {
+  let obj = {}
+
+  for (let i of nums) {
+    if (obj[i]) return true
+    else obj[i] = 1
+  }
+  return false
+};
+
+console.log(containsDuplicate([1,2,3,1]))
