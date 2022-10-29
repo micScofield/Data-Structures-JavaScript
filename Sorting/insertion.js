@@ -21,7 +21,7 @@ function insertion(arr) {
     return arr
 }
 console.log(insertion([12,1,2,3,7,10])) 
-console.log(insertion([1,2,3,7,10,4]))
+console.log(insertion([1,2,3,7,10,4])) // Best Case O(n)
 console.log(insertion([19,44,38,5,47,15])) // general case O(nˆ2)
 
 // In addition, lets have a look at the insertion in a sorted array:-
