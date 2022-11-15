@@ -6,8 +6,6 @@ function reverse(str) {
     return returnStr
 }
 
-console.log(reverse('sanyam'))
-
 function reverse(str) {
     return str.split('').reduce((acc, character) => {
         return character + acc
