@@ -12,7 +12,7 @@ const printUser = function (param1, param2) {
 const fn = printUser.bind(user, 'city');
 fn('state');
 
-Function.prototype.myBind = function (...params) {
+const myBind = function (...params) {
   var fn = this;
   var obj = params[0];
   var additionalParams = params.slice(1);
@@ -21,20 +21,9 @@ Function.prototype.myBind = function (...params) {
   };
 };
 
-const fn2 = printUser.myBind(user, 'city');
-fn2('state');
-
-// Recommended one
-Object.defineProperty(Function.prototype, 'myBind', {
-  value: function (...params) {
-    var fn = this;
-    var obj = params[0];
-    var additionalParams = params.slice(1);
-    return (...params2) => {
-      fn.apply(obj, [...additionalParams, ...params2]);
-    };
-  },
+Object.defineProperty(Object.prototype, 'myBind', {
+  value: myBind,
 });
 
-const fn3 = printUser.myBind(user, 'city');
-fn3('state');
+const fn2 = printUser.myBind(user, 'city');
+fn2('state [custom bind]');

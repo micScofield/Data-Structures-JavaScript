@@ -32,7 +32,7 @@ let result;
 
 result = data.filter((el) => el.report_id === 100021);
 
-Array.prototype.myFilter = function (fn, thisArg) {
+const myFilter = function (fn, thisArg) {
   var arr = thisArg || this;
   var output = [];
 
@@ -42,6 +42,10 @@ Array.prototype.myFilter = function (fn, thisArg) {
   }
   return output;
 };
+
+Object.defineProperty(Array.prototype, 'myFilter', {
+    value: myFilter,
+  });
 
 result = data.myFilter((el) => el.report_id === 100021, data);
 
