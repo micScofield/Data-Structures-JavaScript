@@ -8,7 +8,7 @@ class Stack {
     }
 
     pop() {
-        return this.data.pop()
+        return this.data.pop() // O(1)
     }
 
     getStack() {
@@ -16,7 +16,7 @@ class Stack {
     }
 
     peek() {
-        return this.data[this.data.length-1]
+        return this.data[this.data.length-1] // O(1)
     }
 }
 

@@ -227,10 +227,6 @@ class LinkedList {
   }
 }
 
-function mergeTwoSortedLists(head1, head2) {
-  
-}
-
 // const list = new LinkedList()
 // list.insert(1)
 // list.insert(2)
@@ -280,5 +276,3 @@ const list6 = new LinkedList();
 list6.insert(1);
 list6.insert(3);
 list6.insert(4);
-
-console.log(mergeTwoSortedLists(list5.head, list6.head)); // [1,1,2,3,4,4]
